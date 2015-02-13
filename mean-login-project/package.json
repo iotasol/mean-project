@@ -1,0 +1,14 @@
+{
+        "name": "mean-login-project",
+        "version": "0.0.1",
+        "dependencies": {
+                "express": "*",
+                "mongoose": "*",
+                "mongodb": "*",
+                "app-root-path": "*",
+                "body-parser": "*",
+                "crypto": "*",
+                "path": "*",
+                "express-session": "*"
+         }
+}

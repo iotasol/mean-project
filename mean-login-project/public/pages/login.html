@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>
+			Login
+		</title>
+		<meta name="description" content="">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-3.3.1/css/bootstrap.css">
+		<style type="text/css">
+			#alert {
+			    left: 50%;
+			    margin-left: -20%;
+			    position: fixed;
+			    top: 20px;
+			    width: 40%;
+			    display: none;
+			    z-index: 1030;
+			}
+		    body {
+		        background-color: #444;
+		        background: url(http://s18.postimg.org/l7yq0ir3t/pick8_1.jpg);
+		        
+		    }
+		    .form-signin input[type="text"] {
+		        margin-bottom: 5px;
+		        border-bottom-left-radius: 0;
+		        border-bottom-right-radius: 0;
+		    }
+		    .form-signin input[type="password"] {
+		        margin-bottom: 10px;
+		        border-top-left-radius: 0;
+		        border-top-right-radius: 0;
+		    }
+		    .form-signin .form-control {
+		        position: relative;
+		        font-size: 16px;
+		        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+		        height: auto;
+		        padding: 10px;
+		        -webkit-box-sizing: border-box;
+		        -moz-box-sizing: border-box;
+		        box-sizing: border-box;
+		    }
+		    .vertical-offset-100 {
+		        padding-top: 100px;
+		    }
+		    .img-responsive {
+			    display: block;
+			    max-width: 100%;
+			    height: auto;
+			    margin: auto;
+		    }
+		    .panel {
+			    margin-bottom: 20px;
+			    background-color: rgba(255, 255, 255, 0.75);
+			    border: 1px solid transparent;
+			    border-radius: 4px;
+			    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+			    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+		    }
+		</style>
+	</head>
+	<body class="container" data-ng-app="mean-login-app" data-ng-controller="meanController">
+		<div class="container">
+            <div class="row vertical-offset-100">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">                                
+                            <div class="row-fluid user-row">
+                                <img src="http://s11.postimg.org/7kzgji28v/logo_sm_2_mr_1.png" class="img-responsive" alt="Conxole Admin"/>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form accept-charset="UTF-8" role="form" class="form-signin">
+                                <fieldset>
+                                    <label class="panel-login">
+                                        <div class="login_result"></div>
+                                    </label>
+                                    <input class="form-control" placeholder="Username" id="username" type="text" data-ng-model="meanObj.username">
+                                    <input class="form-control" placeholder="Password" id="password" type="password" data-ng-model="meanObj.password">
+                                    <br></br>
+                                    <input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Login »" data-ng-click="checkUserSignIn();">
+                                    <br/>
+                                    <a href='/register?userType=admin'>
+                                    	<button class="btn btn-lg btn-primary btn-block" type="button" id="login">Need an Account »</button>
+                                    </a>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="alert">
+			    <a class="close" data-ng-click="hideAlertError();">&times;</a>
+			    <strong class="errorHeadText"></strong> <span class="errorText"></span>
+			</div>
+        </div>
+		<!-- <div style="width: 320px; margin: auto;" data-ng-controller="meanController">
+			<h1 style="max-width:300px; margin: auto;">Login Page</h1>
+			<br/>
+			<div role='form' style="max-width:300px; margin: auto;" class='form-group'>
+				<input type='text' placeholder='Enter Username' class='form-control' data-ng-model="meanObj.username"/>
+				<br />
+				<input type='password' placeholder='Enter password' class='form-control'data-ng-model="meanObj.password"/>
+				<br />
+				<button class='btn btn-primary' type='button' data-ng-click="checkUserSignIn();">Submit</button>
+				<a href='/'><button class='btn btn-danger pull-right' type='button'>Cancel</button></a>
+				<br/>
+				<span>
+				<a href='/register'>Not Yet Registered</a></span>
+				<div class="clear"></div>
+			</div>
+			<div id="alert">
+			    <a class="close" data-ng-click="hideAlertError();">&times;</a>
+			    <strong class="errorHeadText"></strong> <span class="errorText"></span>
+			</div>
+		</div> -->
+		<script TYPE="text/javascript" src="/js/external/jQuery.js"></script>
+		<script TYPE="text/javascript" src="/js/external/bootstrap-3.3.1/bootstrap.js"></script>
+		<script TYPE="text/javascript" src="/js/external/bootstrap-3.3.1/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/external/angular.min.js"></script>
+		<script type="text/javascript" src="/js/external/angular-resource.js"></script>
+		<script type="text/javascript" src="/js/external/pagination/dirPagination.js"></script>
+		<script type="text/javascript" src="/js/custom/angular/app/mean-login-app.js"></script>
+		<script type="text/javascript" src="/js/custom/angular/service/mean-login-service.js"></script>
+		<script type="text/javascript" src="/js/custom/angular/controller/mean-login-controller.js"></script>
+		<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    $(document).mousemove(function(event) {
+			        TweenLite.to($("body"), 
+			        .5, {
+			            css: {
+			                backgroundPosition: "" + parseInt(event.pageX / 8) + "px " + parseInt(event.pageY / '12') + "px, " + parseInt(event.pageX / '15') + "px " + parseInt(event.pageY / '15') + "px, " + parseInt(event.pageX / '30') + "px " + parseInt(event.pageY / '30') + "px",
+			            	"background-position": parseInt(event.pageX / 8) + "px " + parseInt(event.pageY / 12) + "px, " + parseInt(event.pageX / 15) + "px " + parseInt(event.pageY / 15) + "px, " + parseInt(event.pageX / 30) + "px " + parseInt(event.pageY / 30) + "px"
+			            }
+			        });
+			    });
+			});
+		</script>
+	</body>

@@ -1,0 +1,253 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<title>
+			Create Vendor Page
+		</title>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/custom/sb-admin.css">
+		<link rel="stylesheet" type="text/css" href="/css/custom/styleSheet.css">
+		<style type="text/css">
+			#alert {
+			    left: 50%;
+			    margin-left: -20%;
+			    position: fixed;
+			    top: 20px;
+			    width: 40%;
+			    display: none;
+			    z-index: 1030;
+			}
+			.list-paginate ul{
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body data-ng-app="mean-login-app">
+		<div id="wrapper" data-ng-controller="meanController" data-ng-init="fetchAdminProfile();listOfVendors();">
+
+	        <!-- Navigation -->
+	        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                </button>
+	                <a class="navbar-brand">Welcome Admin</a>
+	            </div>
+	            <!-- Top Menu Items -->
+	            <ul class="nav navbar-right top-nav">
+	                <li class="dropdown">
+	                	<a href="/logout" class="pull-right">Log Out</a>
+	                    <a href="" class="dropdown-toggle pull-right" data-toggle="dropdown">{{adminObj.firstName + " " + adminObj.lastName}}</a>
+	                    <div class="clear"></div>
+	                </li>
+	            </ul>
+	            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+	            <div class="collapse navbar-collapse navbar-ex1-collapse">
+	                <ul class="nav navbar-nav side-nav" style="height: 100%;">
+	                    <li class="active">
+	                        <a href="/subUserCreation"><i class="fa fa-fw fa-dashboard"></i>Sub User</a>
+	                    </li>
+	                    <li>
+	                        <a href="/about"><i class="fa fa-fw fa-bar-chart-o"></i>About</a>
+	                    </li>
+	                </ul>
+	            </div>
+	            <!-- /.navbar-collapse -->
+	        </nav>
+
+	        <div id="page-wrapper" style="height: 100%;">
+
+	            <div class="container-fluid">
+
+	                <div class="row">
+
+	                    <div class="col-lg-6">
+	                    	<h1 class="page-header" style="font-size: 30px;">
+	                            Sub User Creation
+	                        </h1>
+	                        <div class="form-group">
+								<label>
+									Username
+								</label>
+								<input type="text" class="form-control" placeholder="Enter Username" data-ng-model="meanObj.username">
+							</div>
+							<div class="form-group">
+								<label>
+									Password
+								</label>
+								<input type="password" class="form-control" placeholder="Enter Password" data-ng-model="meanObj.password">
+							</div>
+							<div class="form-group">
+								<label>Confirm Password</label>
+								<input type='password' placeholder='Enter Confirm Password' class='form-control' data-ng-model="meanObj.confirmPassword"/>
+							</div>
+							<div class="form-group">
+								<label>
+									First Name
+								</label>
+								<input type="text" class="form-control" placeholder="Enter First Name" data-ng-model="meanObj.firstName">
+							</div>
+							<div class="form-group">
+								<label>
+									Last Name
+								</label>
+								<input type="text" class="form-control" placeholder="Enter Last Name" data-ng-model="meanObj.lastName">
+							</div>
+							<div class="form-group">
+								<label>
+									Email
+								</label>
+								<input type="text" class="form-control" placeholder="Enter Email" data-ng-model="meanObj.email">
+							</div>
+							<button class="btn btn-primary" type="button" data-ng-click="registerUser();">Save</button>
+							<button class="btn btn-danger pull-right" type="button" data-ng-click="cleanMeanObject();">Clear</button>
+							<div class="clear"></div>
+						</div>
+						<div id="alert">
+						    <a class="close" data-ng-click="hideAlertError();">&times;</a>
+						    <strong class="errorHeadText"></strong> <span class="errorText"></span>
+						</div>
+						<div class="col-lg-6">
+							<div class="page-header" style="width: 100%; display: inline-block;">
+		                        <h1 class="pull-left" style="margin-top: 0; margin-bottom: 0; font-size: 30px;">
+		                            Sub Users
+		                        </h1>
+		                        <div class="pull-right list-paginate" data-dir-pagination-controls="" style="display: inline-block; vertical-align: middle;"></div>
+		                        <div class="clear"></div>
+		                    </div>
+	                        <div class="table-responsive">
+	                            <table class="table table-bordered table-hover table-striped">
+	                                <thead>
+	                                    <tr>
+	                                       	<th>#</th>
+											<th>Username</th>
+											<th>Name</th>
+											<th>Email</th>
+											<th>Delete</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                	<tr data-dir-paginate="vendor in vendorList | itemsPerPage: 10" current-page="currentPage">
+											<th scope="row">{{($index+1)+((currentPage-1)*10)}}</th>
+											<td>
+												{{vendor.username}}
+											</td>
+											<td>
+												{{vendor.firstName}} &nbsp; {{vendor.lastName}}
+											</td>
+											<td>
+												{{vendor.email}}
+											</td>
+											<td style="text-align: center;">
+												<span style="cursor: pointer; color: #c9302c" class="glyphicon glyphicon-remove-circle" data-ng-click="deleteVendor(vendor);"></span>
+											</td>
+										</tr>
+	                                </tbody>
+	                            </table>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <!-- /.row -->
+	        </div>
+	        <!-- /.container-fluid -->
+	    </div>
+	    <!-- /#page-wrapper -->
+		<!-- <div id="wrapper" style="width: 100%;" data-ng-controller="meanController" data-ng-init="fetchAdminProfile();">
+			<nav class="navbar navbar-default" style="margin-bottom: 0;">
+				<div class="navbar-header" style="width: 100%;">
+					<span class="navbar-brand">Welcome Admin</span>
+					<a href="/logout">
+						<span class="navbar-brand pull-right glyphicon glyphicon-off" style="cursor: pointer; padding: 0; margin: 15px; height: 20px;"></span>
+					</a>
+					<span class="navbar-brand pull-right">{{adminObj.firstName + " " + adminObj.lastName}}</span>
+					<div class="clear"></div>
+				</div>
+				<div class="navbar-default left-link">
+					<div class="sidebar-nav navbar-collapse">
+						<ul class="nav">
+							<li >
+								<a class="active" href="/vendorCreation">Create Sub User</a>
+							</li>
+							<li>
+								<a href="/vendorList">Sub User List</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="right-side-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							Sub User Creation
+						</h1>
+						<div class="panel panel-default">
+							<div class="panel-heading">Basic Elements</div>
+							<div class="panel-body">
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label>
+											Username
+										</label>
+										<input type="text" class="form-control" placeholder="Enter Username" data-ng-model="meanObj.username">
+									</div>
+									<div class="form-group">
+										<label>
+											Password
+										</label>
+										<input type="password" class="form-control" placeholder="Enter Password" data-ng-model="meanObj.password">
+									</div>
+									<div class="form-group">
+										<label>Confirm Password</label>
+										<input type='password' placeholder='Enter Confirm Password' class='form-control' data-ng-model="meanObj.confirmPassword"/>
+									</div>
+									<div class="form-group">
+										<label>
+											First Name
+										</label>
+										<input type="text" class="form-control" placeholder="Enter First Name" data-ng-model="meanObj.firstName">
+									</div>
+									<div class="form-group">
+										<label>
+											Last Name
+										</label>
+										<input type="text" class="form-control" placeholder="Enter Last Name" data-ng-model="meanObj.lastName">
+									</div>
+									<div class="form-group">
+										<label>
+											Email
+										</label>
+										<input type="text" class="form-control" placeholder="Enter Email" data-ng-model="meanObj.email">
+									</div>
+									<button class="btn btn-primary" type="button" data-ng-click="registerUser();">Save</button>
+									<button class="btn btn-danger pull-right" type="button" data-ng-click="cleanMeanObject();">Clear</button>
+									<div class="clear"></div>
+								</div>
+								<div id="alert">
+								    <a class="close" data-ng-click="hideAlertError();">&times;</a>
+								    <strong class="errorHeadText"></strong> <span class="errorText"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<script TYPE="text/javascript" src="/js/external/jQuery.js"></script>
+		<script TYPE="text/javascript" src="/js/external/bootstrap-3.3.1/bootstrap.js"></script>
+		<script TYPE="text/javascript" src="/js/external/bootstrap-3.3.1/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/external/angular.min.js"></script>
+		<script type="text/javascript" src="/js/external/angular-resource.js"></script>
+		<script type="text/javascript" src="/js/external/pagination/dirPagination.js"></script>
+		<script type="text/javascript" src="js/custom/angular/app/mean-login-app.js"></script>
+		<script type="text/javascript" src="/js/custom/angular/service/mean-login-service.js"></script>
+		<script type="text/javascript" src="/js/custom/angular/controller/mean-login-controller.js"></script>
+	</body>
+</html>

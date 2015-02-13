@@ -1,0 +1,48 @@
+body{
+	background-color: #f8f8f8;
+}
+
+.left-link{
+	width: 250px; 
+	position: absolute; 
+	margin-top:51px;
+	z-index: 1;
+}
+
+.left-link .sidebar-nav.navbar-collapse{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.left-link ul li a.active {
+    background-color: #eee;
+}
+
+.left-link ul li {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.right-side-wrapper{
+	border-left: 1px solid #e7e7e7 !important;
+    margin: 0 0 0 251px;
+    padding: 0 30px;
+    position: inherit;
+    background-color: #fff;
+    height: 100%;
+}
+
+.sidebar-search{
+	padding: 15px;
+}
+
+.list-text{
+	display: inline-block;
+	min-width: 100px;
+	max-width: 100px;
+}
+
+.ellipsis-text{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

@@ -1,0 +1,182 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<title>
+			Vendor List
+		</title>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/custom/sb-admin.css">
+		<link rel="stylesheet" type="text/css" href="/css/custom/styleSheet.css">
+		<style type="text/css">
+			#alert {
+			    left: 50%;
+			    margin-left: -20%;
+			    position: fixed;
+			    top: 20px;
+			    width: 40%;
+			    display: none;
+			    z-index: 1030;
+			}
+			.list-paginate ul{
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body data-ng-app="mean-login-app" data-ng-controller="meanController" data-ng-init="listOfVendors();fetchAdminProfile();">
+		<div id="wrapper">
+
+	        <!-- Navigation -->
+	        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                </button>
+	                <a class="navbar-brand">Welcome Admin</a>
+	            </div>
+	            <!-- Top Menu Items -->
+	            <ul class="nav navbar-right top-nav">
+	                <li class="dropdown">
+	                	<a href="/logout" class="pull-right">Log Out</a>
+	                    <a href="" class="dropdown-toggle pull-right" data-toggle="dropdown">{{adminObj.firstName + " " + adminObj.lastName}}</a>
+	                    <div class="clear"></div>
+	                </li>
+	            </ul>
+	            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+	            <div class="collapse navbar-collapse navbar-ex1-collapse">
+	                <ul class="nav navbar-nav side-nav" style="height: 100%;">
+	                    <li>
+	                        <a href="/subUserCreation"><i class="fa fa-fw fa-dashboard"></i>Sub User</a>
+	                    </li>
+	                    <li class="active">
+	                        <a href="/about"><i class="fa fa-fw fa-bar-chart-o"></i>About</a>
+	                    </li>
+	                </ul>
+	            </div>
+	            <!-- /.navbar-collapse -->
+	        </nav>
+
+	        <div id="page-wrapper" style="height: 100%;">
+
+	            <div class="container-fluid">
+   	                <div class="row">
+	                    <div class="col-lg-6">
+	                    	<h1 class="page-header">
+	                            About Website
+	                        </h1>
+			                <div class="well">
+			                    <p>This website is created By <a href="http://iotasol.com/" target="_blank">Iotasol Technologies Pvt. Ltd.</a>.</p>
+			                    <h2> Technologies Used </h2>
+			                    <a href="http://mean.io/#!/" target="_blank">MEAN Stack</a><br/>
+			                    <a href="http://jquery.com/" target="_blank">jQuery</a><br/>
+			                    <a href="http://www.mongodb.org/" target="_blank">MongoDB</a><br/>
+			                    <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a><br/>
+			                    <a>Javascript</a><br/><br/>
+			                    <p>This is website is created using MEAN Stack, Bootstrap, angularjs.</p>
+			                </div>
+	                    </div>
+	                    <div class="col-lg-6">
+	                        <h1 class="page-header">
+	                            About Iotasol
+	                        </h1>
+			                <div class="well">
+			                    <h4 style="color: #115B87; text-align: center;">OUR VISION</h4>
+			                    <h5 style="color: #88a919;">I – Innovative, O – Out of Box, T – Technology driven, A – Agile, S - Software Solutions.</h5>
+			                    <p>Iotasol since its beginning has been committed to deliver services that goes extra mile in all aspects. We cater to diversified nature & culture of growing businesses. Iotasol has proven processes of software development, which enhance overall experience of Application usage and development. We believe to enhance business capabilities and work experience of our customers by introducing revolutionary and innovative business ideas during Software development.</p>
+			                    <p>We inculcate the latest methodologies and technologies in our processes and Software Development Life Cycle stages. We have strong technical team which is customer oriented and believe in bringing values to team and customer at every phase of development. We strive to build long term business relationships with our esteemed clients.</p>
+			                    <p>We have worked in varied domains with global clients which helped us building a strong foundation of Software Development Techniques. We believe to be Right First Time and reducing turnaround time of our customers, this helps in reducing overall cost of software development and maintainence for our Customers. Our team has effective communication skills which helps in better mapping of requirements to end solution. We look forward to serve you with best of our capabilities.</p>
+			                </div>
+	                    </div>
+	                </div>
+	                <!-- /.row -->
+
+	            </div>
+	            <!-- /.container-fluid -->
+
+	        </div>
+	        <!-- /#page-wrapper -->
+
+    	</div>
+    <!-- /#wrapper -->
+		<!-- <div id="wrapper" style="100%;" data-ng-controller="meanController" data-ng-init="listOfVendors();fetchAdminProfile();">
+			<nav class="navbar navbar-default" style="margin-bottom:0;">
+				<div class="navbar-header" style="width: 100%;">
+					<span class="navbar-brand">Sub User List</span>
+					<a href="/logout">
+						<span class="navbar-brand pull-right glyphicon glyphicon-off" style="cursor: pointer; padding: 0; margin: 15px; height: 20px;"></span>
+					</a>
+					<span class="navbar-brand pull-right">{{adminObj.firstName + " " + adminObj.lastName}}</span>
+					<div class="clear"></div>
+				</div>
+				<div class="navbar-default left-link">
+					<div class="sidebar-nav navbar-collapse">
+						<ul class="nav">
+							<li>
+								<a href="/vendorCreation">Create Sub User</a>
+							</li>
+							<li>
+								<a href="/vendorList" class="active">Sub User List</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="right-side-wrapper" style="padding-top: 30px;" >
+				<div class="panel panel-default">
+					<div class="panel-heading" style="width: 100%; display: inline-block;">
+						<span class="pull-left" style="display: inline-block; vertical-align: middle">List of Sub Users</span>
+						<div class="pull-right list-paginate" data-dir-pagination-controls="" style="display: inline-block; vertical-align: middle;"></div>
+						<div class="clear"></div>
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Username</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Email</th>
+								<th style="visibility: hidden;">Email</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-dir-paginate="vendor in vendorList | itemsPerPage: 9" current-page="currentPage">
+								<th scope="row">{{($index+1)+((currentPage-1)*9)}}</th>
+								<td>
+									<span class="list-text ellipsis-text">{{vendor.username}}</span>
+								</td>
+								<td>
+									<span class="list-text ellipsis-text">{{vendor.firstName}}</span>
+								</td>
+								<td>
+									<span class="list-text ellipsis-text">{{vendor.lastName}}</span>
+								</td>
+								<td>
+									<span class="list-text ellipsis-text">{{vendor.email}}</span>
+								</td>
+								<td>
+									<button class="btn btn-danger" type="button" data-ng-click="deleteVendor(vendor);">Delete</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div> -->
+		<script TYPE="text/javascript" src="/js/external/jQuery.js"></script>
+		<script TYPE="text/javascript" src="/js/external/bootstrap-3.3.1/bootstrap.js"></script>
+		<script TYPE="text/javascript" src="/js/external/bootstrap-3.3.1/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/external/angular.min.js"></script>
+		<script type="text/javascript" src="/js/external/angular-resource.js"></script>
+		<script type="text/javascript" src="/js/external/pagination/dirPagination.js"></script>
+		<script type="text/javascript" src="js/custom/angular/app/mean-login-app.js"></script>
+		<script type="text/javascript" src="/js/custom/angular/service/mean-login-service.js"></script>
+		<script type="text/javascript" src="/js/custom/angular/controller/mean-login-controller.js"></script>
+	</body>
+</html>
