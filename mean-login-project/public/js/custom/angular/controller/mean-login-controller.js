@@ -85,6 +85,8 @@ angular.module('mean-login-controller').controller("meanController", function($s
 		if(!$scope.validEmailAddress($scope.meanObj.email, "email address"))
 			return;
 		MeanLoginService.post({otype: 'registerUser', combinedObj: $scope.meanObj}, function(obj){
+			if(obj.roles === "admin")
+				window.location = "/";
 			$scope.cleanMeanObject();
 			$scope.showAlertError('Success !', 'User Created successfully.', 'alert-success');
 			$scope.listOfVendors();
