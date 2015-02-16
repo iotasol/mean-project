@@ -69,15 +69,5 @@ module.exports = function(app){
 		else if(req.query.otype == constants.updateVendor)
 			serverController.updateVendor(req, res);
 	});
-
-	/*GET REQUEST*/
-	// app.get('/api/meanLogin', function(req, res){
-	// 	if(req.query.otype === constants.allVendor)
-	// 		serverController.listVendors(req, res);
-	// 	else if(req.query.otype === constants.fetchVendor)
-	// 		serverController.fetchVendor(req, res);
-	// 	else if(req.query.otype === constants.deleteVendor)
-	// 		serverController.deleteVendor(req, res);
-	// })
 }
 
