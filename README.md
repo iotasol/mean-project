@@ -16,5 +16,5 @@ Technologies Used
 
 This is a demo website for CRUD operations of MEAN Stack and designed with Bootstrap. In this website two types of users can be login. Admin user is created on Signup which further create a vendor user.
 
-Thanks, 
+Thanks, <br/>
 <a href="http://iotasol.com/">Iotasol Technologies Pvt. Ltd.</a>
